@@ -206,10 +206,6 @@ public class AffichAnnAllClt {
                      FbServices fb=new FbServices();
                      fb.getF().show();
         });
-         tb2.addCommandToOverflowMenu("Map",theme.getImage("back-command.png"), (ActionListener) (ActionEvent evt1) -> {
-                Map m=new Map();
-                m.getHi().show();
-        });
     }
 
     public Form getF() {

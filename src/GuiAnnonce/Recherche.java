@@ -33,7 +33,7 @@ public class Recherche {
     TextField nom;
     Container c,c1,c2,c3;
     private Image img;
-    private Resources theme;
+    private final Resources theme;
     public  String msg;
     public String url= "http://localhost/SoukI/web/imagesAnnonce/";
     private EncodedImage enc ;
@@ -79,7 +79,17 @@ public class Recherche {
         }
         f2.add(ck);
         f2.show();
-        });  
+        });
+        tb1.addCommandToLeftBar("back",theme.getImage("back-command.png"), (ActionListener) (ActionEvent evt1) -> {
+//                AffichAnnAllClt AffichAnn=new AffichAnnAllClt();
+//                AffichAnn.getF().show();
+                  Recherche r =new Recherche();
+                  r.getF().show();
+        });
+        tb2.addCommandToLeftBar("back",theme.getImage("back-command.png"), (ActionListener) (ActionEvent evt1) -> {
+                AffichAnnAllClt AffichAnn=new AffichAnnAllClt();
+                AffichAnn.getF().show();
+        });
     }
 
     public Form getF() {
