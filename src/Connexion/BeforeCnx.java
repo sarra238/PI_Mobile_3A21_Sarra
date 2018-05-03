@@ -5,7 +5,6 @@
  */
 package Connexion;
 
-import GuiAnnonce.AnalogClock;
 import com.codename1.components.ImageViewer;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
@@ -37,23 +36,16 @@ public class BeforeCnx {
         catch (IOException ex) {
             System.out.println("error encoder");
         }
-//         Container hi = new Container();
-//        AnalogClock clock = new AnalogClock();
-//        hi.add(clock);
-//        clock.start();
         String urll="http://localhost/SoukI/web/Home/images/4.jpg";
         Image img = URLImage.createToStorage(enc, urll, urll, URLImage.RESIZE_SCALE);
         ImageViewer imgv=new ImageViewer();
         imgv.setImage(img);
         c=new Container(BoxLayout.y());
         c.add(imgv);
-//        f0.add(hi);
         f0.add(c);
-       
-        
         f0.show();
-         Toolbar tb1= f0.getToolbar();
-           tb1.addCommandToOverflowMenu("Connexion",theme.getImage("back-command.png"), (ActionListener) (ActionEvent evt1) -> {
+        Toolbar tb1= f0.getToolbar();
+        tb1.addCommandToOverflowMenu("Connexion",theme.getImage("back-command.png"), (ActionListener) (ActionEvent evt1) -> {
                 cnx c2 =new cnx();
                 c2.getF().show();
         });

@@ -16,10 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author Win10
- */
 public class ProduitsServices {
     ArrayList<Produit> listProd2;
      public ArrayList<Produit> getListProdC(String json) {

@@ -5,16 +5,11 @@
  */
 package Entities;
 
-
-/**
- *
- * @author lv
- */
 public class commentaire {
     private int id;
-private int idEv;
-private int userId;    
-private String comm;
+    private int idEv;
+    private int userId;    
+    private String comm;
 
 
     public int getId() {

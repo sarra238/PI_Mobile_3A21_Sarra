@@ -24,10 +24,6 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import java.io.IOException;
 
-/**
- *
- * @author Win10
- */
 public class AfterCnx {
     private Form f0;
     private Resources theme;

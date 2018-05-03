@@ -8,6 +8,7 @@ package GuiAnnonce;
 import Connexion.AfterCnx;
 import Entities.Annonce;
 import Services.AnnoncesServices;
+import Services.FbServices;
 import Services.Local_Notification;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.SpanLabel;
@@ -15,7 +16,6 @@ import com.codename1.db.Cursor;
 import com.codename1.db.Database;
 import com.codename1.db.Row;
 import com.codename1.ui.Button;
-import com.codename1.ui.Command;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.EncodedImage;
@@ -35,25 +35,18 @@ import java.util.ArrayList;
 
 public class AffichAnnAllClt {
     private Form f;
-    SpanLabel lb;
     TextField nom;
-    SpanLabel l,l2,l3,lr;
-    Container c;
-    Container c1;
-    Container c2;
-    Container c3;
+    SpanLabel l,l2,l3,lr,lb;
+    Container c,c1,c2,c3;
     private Image img;
     private Resources theme;
     public  String msg;
     public String url= "http://localhost/SoukI/web/imagesAnnonce/";
-    public String url2="C:\\wamp64\\www\\SoukI\\web\\imagesAnnonce\\";
     private EncodedImage enc ;
-     EncodedImage ii;
     private ImageViewer imgv;
     private Database db;
     private Boolean created = false;
     public AffichAnnAllClt() {
-       
          created = Database.exists("Annonce");
         try {
            db= Database.openOrCreate("Annonce");
@@ -74,8 +67,8 @@ public class AffichAnnAllClt {
         AnnoncesServices s =new AnnoncesServices();
         ArrayList<Annonce> le = s.getList2();
         Form f2=new Form("Détails!",new FlowLayout(Component.CENTER, Component.CENTER));
-        Toolbar tb1= f2.getToolbar();
         for (Annonce le1 : le) {
+            Toolbar tb1= f2.getToolbar();
             c=new Container(BoxLayout.x());
             try {
                 enc = EncodedImage.create("/giphy.gif").scaledEncoded(175,200);
@@ -181,7 +174,9 @@ public class AffichAnnAllClt {
                         System.out.println("Error sup");
                      }
                     });
-                    
+                    tb1.addCommandToLeftBar("back",theme.getImage("back-command.png"), (ActionListener) (ActionEvent evt1) -> {
+                    f.show();
+                    });
                  f2.show(); 
                 
             });
@@ -189,9 +184,7 @@ public class AffichAnnAllClt {
         }
         
         f.add(c2);
-           tb1.addCommandToLeftBar("back",theme.getImage("back-command.png"), (ActionListener) (ActionEvent evt1) -> {
-                f.show();
-        });
+           
         Toolbar tb2= f.getToolbar();
            tb2.addCommandToLeftBar("back",theme.getImage("back-command.png"), (ActionListener) (ActionEvent evt1) -> {
                 AfterCnx AfCnx = new AfterCnx();
@@ -205,11 +198,18 @@ public class AffichAnnAllClt {
                 AvisAnnonce Avis=new AvisAnnonce();
                 Avis.getF().show();
         });
-           tb2.addCommandToOverflowMenu("Recherche par type",theme.getImage("back-command.png"), (ActionListener) (ActionEvent evt1) -> {
+           tb2.addCommandToOverflowMenu("Recherche",theme.getImage("back-command.png"), (ActionListener) (ActionEvent evt1) -> {
                 Recherche Avis=new Recherche();
                 Avis.getF().show();
         });
-        
+        tb2.addCommandToOverflowMenu("Partager Facebook",theme.getImage("back-command.png"), (ActionListener) (ActionEvent evt1) -> {
+                     FbServices fb=new FbServices();
+                     fb.getF().show();
+        });
+         tb2.addCommandToOverflowMenu("Map",theme.getImage("back-command.png"), (ActionListener) (ActionEvent evt1) -> {
+                Map m=new Map();
+                m.getHi().show();
+        });
     }
 
     public Form getF() {

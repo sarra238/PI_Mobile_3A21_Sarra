@@ -5,11 +5,6 @@
  */
 package Entities;
 
-
-/**
- *
- * @author dell
- */
 public class Produit {
     	
 private int id;
@@ -19,12 +14,10 @@ private String Categorie;
 private double Prix;
 private String Description;
 private String nomImage;
-//private int idUser;
 
     public Produit() {
     }
 
-    
     public int getId() {
         return id;
     }

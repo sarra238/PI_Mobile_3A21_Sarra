@@ -5,7 +5,6 @@
  */
 package Services;
 
-import Entities.Annonce;
 import Entities.CommentAnn;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
@@ -17,11 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author lv
- */
-public class commService {
+public class CommentairesAnnoncesServices {
+    public void AjoutCom(CommentAnn ta) {
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/SoukI/web/app_dev.php/annonce/AjoutComM/" + ta.getCommentAnn();
+        con.setUrl(Url);
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
     ArrayList<CommentAnn> listComAnn2;
     public ArrayList<CommentAnn> getListAnnC(String json) {
         ArrayList<CommentAnn> listComAnn = new ArrayList<>();
@@ -47,7 +52,7 @@ public class commService {
         ConnectionRequest con = new ConnectionRequest();
         con.setUrl("http://localhost/SoukI/web/app_dev.php/annonce/AffichComMob");
         con.addResponseListener((NetworkEvent evt) -> {
-            commService ser = new commService();
+            CommentairesAnnoncesServices ser = new CommentairesAnnoncesServices();
             listComAnn2 = ser.getListAnnC(new String(con.getResponseData()));
         });
         NetworkManager.getInstance().addToQueueAndWait(con);

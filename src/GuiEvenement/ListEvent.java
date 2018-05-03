@@ -34,86 +34,60 @@ import java.util.ArrayList;
 public class ListEvent {
      
     Form f;
-    SpanLabel lb;
+    SpanLabel lb,l,l2;
     TextField nom;
-    SpanLabel l;
-     SpanLabel l2;
-      Container c;
+    Container c;
     private Image img;
-      private Resources theme;
-     public  String msg;
-  private Database db;
+    private Resources theme;
+    public  String msg;
+    private Database db;
     private boolean created=false;
-  public static int j;
-   public String url= "http://localhost/SoukI/web/images2/";
- 
+    public static int j;
+    public String url= "http://localhost/SoukI/web/images2/";
      private EncodedImage enc ;
      private ImageViewer imgv;
      private Label ss ;
      public ListEvent() 
      {
-        
         f = new Form();
         EvenementServices s =new EvenementServices();
-        ArrayList<Evenement> le = s.getList2();
-         
+        ArrayList<Evenement> le = s.getList2(); 
         created= Database.exists("pi");
-   try{
+         try{
             db= Database.openOrCreate("pi");
              if (created==false){
-        db.execute("create table participation (id INTEGER,type TEXT,ide INTEGER,idU INTEGER);");}}
-        catch (IOException ex) {
-            }
+                 db.execute("create table participation (id INTEGER,type TEXT,ide INTEGER,idU INTEGER);");
+             }
+         }
+        catch (IOException ex) {}
         for (int i = 0; i < le.size(); i++) 
         {
           c=new Container(new FlowLayout(CENTER));
-    
        try 
        {
             enc = EncodedImage.create("/giphy.gif");}
             catch (IOException ex) {
             System.out.println("error encoder");
        }
-              ss =new Label(le.get(i).getNomImg());
-              
-              img = URLImage.createToStorage(enc, "imagea"+i, url+ss.getText(), URLImage.RESIZE_SCALE);
-              imgv = new ImageViewer(img);
-              c.add(imgv);
-              l = new SpanLabel(le.get(i).getNomEvenement());
-      
-            
-  
-     
- 
-              c.add(l);
-            
-              Button b = new Button("detail");
-              c.add(b);
-
-              f.add(c);
-          
-         
-       
+       ss =new Label(le.get(i).getNomImg());       
+       img = URLImage.createToStorage(enc, "imagea"+i, url+ss.getText(), URLImage.RESIZE_SCALE);
+       imgv = new ImageViewer(img);
+       c.add(imgv);
+       l = new SpanLabel(le.get(i).getNomEvenement());
+       c.add(l);
+       Button b = new Button("detail");
+       c.add(b);
+       f.add(c);
             b.setUIID(le.get(i).getNomEvenement());
             final Evenement event = le.get(i);
-           
             b.addActionListener((ActionListener) (ActionEvent evt) -> {
                 System.out.println("hello"+event.toString());
               if (b.getUIID().equals(event.getNomEvenement())) {
                   Form  f2 = new Form();
-                  
-                  //   try {
                   PartService p = new PartService();
                   ArrayList<particEv> les=p.affichpar(event.getId());
                   int len = les.size();
                   System.out.println(len);
-                  //Cursor cr =db.executeQuery("Select count(*) from participation");
-                  
-                  
-                  //   Row r= cr.getRow();
-                  //  int nb = r.getInteger(0);
-                  
-                  //  System.out.println(nb);
                   try {
                       EncodedImage enc2 ;
                       enc2 = EncodedImage.create("/giphy.gif");
@@ -129,7 +103,6 @@ public class ListEvent {
                       c2=new Container(new FlowLayout(CENTER));
                       c2.add(imgv2);
                       c2.add(l2);
-                      //   Container c3=new Container(new BoxLayout(BoxLayout.Y_AXIS));
                       RadioButton cB = new RadioButton("interesé(e)");
                       RadioButton cB2 = new  RadioButton("nest pas interesé(e)");
                       RadioButton cB3 = new  RadioButton("participer");
@@ -160,9 +133,6 @@ public class ListEvent {
                               particEv v = new particEv(event.getId(),"nest pas interesé(e)");
                               p1.ajoutPar(v);
                           });
-                          
-                          
-                          
                           cB3.addActionListener((ActionListener) (ActionEvent evt1) -> {
                               cB.setSelected(false);
                               cB2.setSelected(false);
@@ -285,13 +255,8 @@ public class ListEvent {
           });     }catch (IOException ex) {
                                }
               }
-          } //   lb.setText(s.getList2().toString());
+          } 
           );
-        
-            
-         
-        
-          
      
           f.getToolbar().addCommandToLeftBar("back", null, (ev)->{
               AfterCnx AfCnx = new AfterCnx();

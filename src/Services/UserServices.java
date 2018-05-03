@@ -16,14 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author Win10
- */
 public class UserServices {
 
-    public UserServices() {
-    }
+    public UserServices() {}
    
      ArrayList<User> listUser2;
      public ArrayList<User> getListUserC(String json) {

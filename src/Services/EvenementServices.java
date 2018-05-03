@@ -16,15 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author lv
- */
 public class EvenementServices {
      public ArrayList<Evenement> getListEvent(String json) {
-
-        ArrayList<Evenement> listEvent = new ArrayList<>();
-
+        ArrayList<Evenement> listEvent2 = new ArrayList<>();
         try {
             System.out.println(json);
             JSONParser j = new JSONParser();
@@ -37,46 +31,25 @@ public class EvenementServices {
 
             for (Map<String, Object> obj : list) {
                 Evenement e = new Evenement();
-
-                // System.out.println(obj.get("id"));
                 float id = Float.parseFloat(obj.get("id").toString());
-                //System.out.println(id);
                 e.setId((int) id);
-          ///e.setUserId(O(obj.get("id").toString().trim()));
                 e.setNomEvenement(obj.get("nomEvenement").toString());
-               e.setDescription(obj.get("description").toString());
-               e.setNomImg(obj.get("nomImg").toString());
-           e.setDateDeb(obj.get("dateDeb2").toString());
-                //System.out.println(obj.get("dateDeb2").toString());
-           e.setDateFin(obj.get("dateFin2").toString());
-          
-             //   Date deb (obj.get("dateDeb").toString());
-             // e.setDateDeb(obj.get("dateDeb").toString());
-                 // e.setDateFin(obj.get("dateFin").toString());
-                         e.setType(obj.get("type").toString());
-                       Object n = obj.get("idUser");
-                       System.out.println("jj"+n.toString());
-              // int idr= n.getId();
-              
-            //  e.setUserId(idr);
-              
-            
-             //   System.out.println(obj.get("idUser").toString());
-                          e.setLocalisation(obj.get("localisation").toString());
-               // System.out.println(e);
-                listEvent.add(e);
-
+                e.setDescription(obj.get("description").toString());
+                e.setNomImg(obj.get("nomImg").toString());
+                e.setDateDeb(obj.get("dateDeb2").toString());
+                e.setDateFin(obj.get("dateFin2").toString());
+                e.setType(obj.get("type").toString());
+                Object n = obj.get("idUser");
+                System.out.println("jj"+n.toString());          
+                e.setLocalisation(obj.get("localisation").toString());
+                listEvent2.add(e);
             }
-
-        } catch (IOException ex) {
-        }
-        System.out.println(listEvent);
-        return listEvent;
-
+        } 
+        catch (IOException ex) {}
+        return listEvent2;
     }
      
     ArrayList<Evenement> listEvent = new ArrayList<>();
-    
     public ArrayList<Evenement> getList2(){       
         ConnectionRequest con = new ConnectionRequest();
         con.setUrl("http://localhost/SoukI/web/app_dev.php/event/a");  

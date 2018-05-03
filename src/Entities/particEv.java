@@ -5,22 +5,16 @@
  */
 package Entities;
 
-/**
- *
- * @author lv
- */
+
 public class particEv {
  private int id;
-private int idEv;
-private int userId;    
-private String Type;
+ private int idEv;
+ private int userId;    
+ private String Type;
 
     public particEv() {
         
     }
-
-
-
     public int getId() {
         return id;
     }

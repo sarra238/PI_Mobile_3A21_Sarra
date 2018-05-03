@@ -5,10 +5,6 @@
  */
 package Entities;
 
-/**
- *
- * @author lv
- */
 public class Evenement {
     
       private int id;
@@ -19,18 +15,15 @@ public class Evenement {
       private String localisation;
       private String type;
       private String NomImg;
-private int userId;
+      private int userId;
 
-    public Evenement( String nomEvenement, String dateDeb, String dateFin, String Description, String localisation ) {
-
+    public Evenement( String nomEvenement, String dateDeb, String dateFin, String Description, String localisation ) 
+    {
         this.nomEvenement = nomEvenement;
         this.dateDeb = dateDeb;
         this.dateFin = dateFin;
         this.Description = Description;
         this.localisation = localisation;
-    
-       
-
     }
 
     public int getUserId() {

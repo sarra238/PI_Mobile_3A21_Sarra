@@ -6,9 +6,7 @@
 package Connexion;
 
 import Entities.User;
-import Services.SMS_Service;
 import Services.UserServices;
-import com.codename1.io.ConnectionRequest;
 import com.codename1.ui.Button;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
@@ -24,15 +22,8 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import java.util.ArrayList;
 
-/**
- *
- * @author Win10
- */
 public class cnx {
     private Form f;
-    private final String url="";
-    private ConnectionRequest CR;
-    private String msg;
     private final Container c;
     private TextField t1;
     private final TextField t2;
@@ -46,18 +37,15 @@ public class cnx {
         t1 = new TextField("","Login",15,0);
         t2 = new TextField("","Password",15,TextField.PASSWORD);
         b  = new Button("Connect");
-         
         b.addActionListener((ActionListener) (ActionEvent evt) -> {
           UserServices s =new UserServices();
          ArrayList<User> le = s.getList2(t1.getText());
             if(!le.isEmpty()){
-//                SMS_Service sms = new SMS_Service();
-//                sms.createSMS(23821291, "Vous étes connécté au site Souk El Medina!");
-//                System.out.println("hi");
                 AfterCnx After=new AfterCnx();
                 After.getF().show();
             }
-            else{
+            else
+            {
                 Dialog.show("Erreur", "Les informations saisies ne sont pas correctes", "Ok", "Cancel");
             }
         });

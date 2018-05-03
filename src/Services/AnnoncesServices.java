@@ -6,7 +6,6 @@
 package Services;
 
 import Entities.Annonce;
-import Entities.CommentAnn;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
@@ -17,10 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author Win10
- */
 public class AnnoncesServices {
      ArrayList<Annonce> listAnn2;
      public ArrayList<Annonce> getListAnnC(String json) {
@@ -31,7 +26,6 @@ public class AnnoncesServices {
             List<Map<String, Object>> list = (List<Map<String, Object>>) event.get("root");
             for (Map<String, Object> obj : list) {
                 Annonce e = new Annonce();
-
                 float id = Float.parseFloat(obj.get("id").toString());
                 e.setId((int) id);
                 e.setNomAnnonce(obj.get("nomAnnonce").toString());
@@ -68,15 +62,4 @@ public class AnnoncesServices {
         NetworkManager.getInstance().addToQueueAndWait(con);
         return listAnn2;
     }
-    public void AjoutCom(CommentAnn ta) {
-        ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://localhost/SoukI/web/app_dev.php/annonce/AjoutComM/" + ta.getCommentAnn();
-        con.setUrl(Url);
-        con.addResponseListener((e) -> {
-            String str = new String(con.getResponseData());
-            System.out.println(str);
-        });
-        NetworkManager.getInstance().addToQueueAndWait(con);
-    }
-
 }

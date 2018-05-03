@@ -22,35 +22,24 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
+import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- *
- * @author Win10
- */
 public class Recherche {
     private Form f;
-    SpanLabel lb;
+    SpanLabel lb,l,l2,l3;
     TextField nom;
-    SpanLabel l;
-    SpanLabel l2;
-    SpanLabel l3;
-    Container c;
-    Container c1;
-    Container c2;
-    Container c3;
+    Container c,c1,c2,c3;
     private Image img;
     private Resources theme;
     public  String msg;
     public String url= "http://localhost/SoukI/web/imagesAnnonce/";
-    public String url2="C:\\wamp64\\www\\SoukI\\web\\imagesAnnonce\\";
     private EncodedImage enc ;
-     EncodedImage ii;
     private ImageViewer imgv;
-
     public Recherche() {
+        theme = UIManager.initFirstTheme("/theme");
         f=new Form("Annonces!",new FlowLayout(Component.CENTER, Component.CENTER));
         c2=new Container(BoxLayout.y());
         Container ck=new Container(BoxLayout.y());

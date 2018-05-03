@@ -6,8 +6,7 @@
 package GuiAnnonce;
 
 import Entities.CommentAnn;
-import Services.AnnoncesServices;
-import Services.commService;
+import Services.CommentairesAnnoncesServices;
 import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.Component;
@@ -23,10 +22,6 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import java.util.ArrayList;
 
-/**
- *
- * @author Win10
- */
 public class CommentaireAnn {
     private Form f;
     private final  Resources theme;
@@ -40,10 +35,10 @@ public class CommentaireAnn {
         TextField t44= new TextField("","Commentaire",150,0);
         Button bAvis = new Button("Comment");
         bAvis.addActionListener((ActionListener) (ActionEvent evt1) -> {
-            AnnoncesServices ser = new AnnoncesServices();
+            CommentairesAnnoncesServices ser = new CommentairesAnnoncesServices();
             CommentAnn t = new CommentAnn();
             t.setCommentAnn(t44.getText());
-            ser.AjoutCom(t);   
+            ser.AjoutCom(t);  
             AffichAnnAllClt AffichAnn=new AffichAnnAllClt();
             AffichAnn.getF().show();
         });
@@ -56,13 +51,12 @@ public class CommentaireAnn {
                 AffichAnnAllClt AffichAnn=new AffichAnnAllClt();
                 AffichAnn.getF().show();
         });
-        
-        commService s =new commService();
+        CommentairesAnnoncesServices s =new CommentairesAnnoncesServices();
         ArrayList<CommentAnn> le = s.getList2();
         Container fk = new Container(BoxLayout.y());
         for (CommentAnn k :le)
         {
-            Container cc = new Container(BoxLayout.y());
+           Container cc = new Container(BoxLayout.y());
            SpanLabel ll = new SpanLabel(k.getCommentAnn());
            SpanLabel l2 = new SpanLabel(k.getDate());
            SpanLabel km=new SpanLabel("*************************************");

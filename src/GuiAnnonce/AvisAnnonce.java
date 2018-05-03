@@ -8,7 +8,7 @@ package GuiAnnonce;
 import Entities.AvisAnnonces;
 import Services.AvisAnnonceServices;
 import com.codename1.components.SpanLabel;
-import com.codename1.notifications.LocalNotification;
+import com.codename1.messaging.Message;
 import com.codename1.ui.Button;
 import com.codename1.ui.ComboBox;
 import com.codename1.ui.Container;
@@ -21,10 +21,6 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 
-/**
- *
- * @author Win10
- */
 public class AvisAnnonce {
     private Form f;
     private final  Resources theme;
@@ -83,7 +79,6 @@ public class AvisAnnonce {
         SpanLabel ssp= new SpanLabel("********************************");
         clo.add(ssp);
         f.add(clo);
-        
         Container c= new Container(BoxLayout.y());
         SpanLabel l = new SpanLabel("Veuillez choisir un avis");
         ComboBox cb = new ComboBox("Mauvais","Passable", "Bien","Assez Bien","TrésBien");
@@ -92,6 +87,8 @@ public class AvisAnnonce {
             AvisAnnonceServices ser = new AvisAnnonceServices();
             AvisAnnonces t = new AvisAnnonces((String) cb.getSelectedItem());
             ser.AjoutAvis(t);  
+            Message mk = new Message("Vous avez choisit de noter notre service avec "+cb.getSelectedItem()+"! MERCI ");
+            Display.getInstance().sendMessage(new String[] {"sarra.abdeljaouad@esprit.tn"}, "Avis sur le service annonce dans l'application Souk El Medina", mk);
             AffichAnnAllClt AffichAnn=new AffichAnnAllClt();
             AffichAnn.getF().show();
         });
@@ -104,8 +101,6 @@ public class AvisAnnonce {
                 AffichAnnAllClt AffichAnn=new AffichAnnAllClt();
                 AffichAnn.getF().show();
         });
-        
-        
     }
 
     public Form getF() {
